@@ -97,6 +97,5 @@ None are unsolvable. All require V8 team involvement.
 
 ---
 
-**Full discussion**: https://github.com/orgs/nodejs/discussions/5143
-
-— [ChenTao](https://github.com/babyfish-ct), author of [Jimmer](https://github.com/babyfish-ct/jimmer)
+**Original Documentation**: https://github.com/babyfish-ct/node-arena-gc-hybrid
+**Copy at Node Discussion**: https://github.com/orgs/nodejs/discussions/5143
