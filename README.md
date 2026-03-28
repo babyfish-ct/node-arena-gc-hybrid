@@ -50,7 +50,7 @@ on write: target[field] = value
 
 1. When a GC object holds a reference to an Arena object, `promote()` is triggered. This performs a DFS traversal of the escaping subgraph, moving all reachable Arena objects to the GC heap and updating their pointers.
 
-2. Promoting 100 objects out of 10,000 still requires scanning the entire Arena to fix up pointers in the remaining 9,900 objects that may reference the promoted ones(Whether a Remembered Set would help with pointer fixup cost during promotion requires empirical validation, not a priori judgment).
+2. Promoting 100 objects out of 10,000 still requires scanning the entire Arena to fix up pointers in the remaining 9,900 objects that may reference the promoted ones *(Whether a Remembered Set would help with pointer fixup cost during promotion requires empirical validation, not a priori judgment)*.
 
 **Why it's not as bad as it sounds**:
 
