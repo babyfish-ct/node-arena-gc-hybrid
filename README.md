@@ -22,6 +22,8 @@ void releaseArena(Arena *arena);
 void setContextArena(Arena *arena);
 ```
 
+> The initial capacity of Arena is small (e.g., 1KB), grown dynamically via a linked chunk list as needed — bounded only by the total Arena Heap capacity.
+
 Node's HTTP layer calls these. Application code calls nothing. `express`, `fastify`, `koa` — all existing code benefits without modification.
 
 Object allocation rules:

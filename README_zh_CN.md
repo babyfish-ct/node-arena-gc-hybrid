@@ -22,6 +22,8 @@ void releaseArena(Arena *arena);
 void setContextArena(Arena *arena);
 ```
 
+> Arena的初始容量较小（如 1KB），按需通过 chunk 链表动态扩容，上限仅受整个 Arena 堆总容量约束。
+
 Node 的 HTTP 层调用这些接口。应用代码什么都不调用。`express`、`fastify`、`koa`——所有现有代码无需任何修改即可受益。
 
 对象分配规则：
