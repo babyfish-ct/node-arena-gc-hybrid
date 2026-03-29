@@ -6,7 +6,7 @@
 
 ## The Problem
 
-V8 has no idea where your request boundaries are. The 300 objects allocated for request #4821 will all be dead in 12ms — but V8 doesn't know that. It traces them repeatedly and collects them on its own schedule, causing p99 latency spikes that no amount of tuning truly eliminates.
+GC has no idea where your request boundaries are. The 300 objects allocated for request #4821 will all be dead in 12ms — but GC doesn't know that. It traces them repeatedly and collects them on its own schedule, causing p99 latency spikes that no amount of tuning truly eliminates.
 
 ---
 
@@ -36,7 +36,7 @@ Object allocation rules:
 
 > Arena objects may reference GC objects. GC objects must never reference Arena objects.
 
-Enforced by extending V8's existing write barrier with a single bitmask check:
+Enforced by extending GC's existing write barrier with a single bitmask check:
 
 ```
 on write: target[field] = value
@@ -92,10 +92,10 @@ If the I/O thread encounters a GC object reference during traversal, it writes a
 
 - Write barrier must cover all reference write paths: JIT code, interpreter, native extensions, WeakMaps.
 - Promotion DFS must be atomic with respect to JS execution.
-- Dual heap requires careful virtual memory layout coordination with V8's existing allocator.
+- Dual heap requires careful virtual memory layout coordination with GC's existing allocator.
 - DevTools memory profiler and heap snapshots need updating.
 
-None are unsolvable. All require V8 team involvement.
+None are unsolvable. All require GC team involvement.
 
 ---
 
